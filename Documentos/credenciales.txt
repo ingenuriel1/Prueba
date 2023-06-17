@@ -1,0 +1,13 @@
+http://23.102.103.53:5200/documentation/
+
+Base de datos
+Server:23.102.103.53
+Colección: CarlosReyes
+Usuario:creyespruebas
+Contraseña:creyespruebas
+
+Add-Migration initial
+
+Entity frame
+Entity framework tool
+Entity framework core sql server

@@ -1,0 +1,75 @@
+{
+	"info": {
+		"_postman_id": "20bb6a77-f3d3-46c2-af99-18331dfbe7e8",
+		"name": "Conteo y Recaudo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://23.102.103.53:5200/api/Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"userName\":\"user\", \"password\": \"1234\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://23.102.103.53:5200/api/Login",
+					"protocol": "http",
+					"host": [
+						"23",
+						"102",
+						"103",
+						"53"
+					],
+					"port": "5200",
+					"path": [
+						"api",
+						"Login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://23.102.103.53:5200/api/RecaudoVehiculos/2021-08-01",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InVzZXIiLCJqdGkiOiI0MzA2NTk3MS04OTI3LTQwZDUtYjhlNy1mN2FjOTRmZDBiZTQiLCJleHAiOjE2ODY5NjU5NDB9.oCv9aKtzvf0qk0sui69A9aoR3NqxH0e9zN17bTu_KWg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://23.102.103.53:5200/api/RecaudoVehiculos/2021-08-01",
+					"protocol": "http",
+					"host": [
+						"23",
+						"102",
+						"103",
+						"53"
+					],
+					"port": "5200",
+					"path": [
+						"api",
+						"RecaudoVehiculos",
+						"2021-08-01"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
