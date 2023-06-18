@@ -1,0 +1,56 @@
+<section id="call-to-action" class="call-to-action">
+    <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 text-center">
+                <h3>Reporte</h3>
+            </div>
+        </div>
+    </div>
+</section>
+<br>
+
+<div >
+    
+    <table>
+        <tbody>
+            <td >
+                <tr>
+                    <td></td>
+                </tr>
+                <tr *ngFor="let data of fechas;">
+                    <td>{{data.fecha}}</td>
+                </tr>
+                <tr>
+                    <td>Total</td>
+                </tr>
+            </td>
+            <td *ngFor="let fechasTotal of fechasTotales; index as i; first as isFirst">
+                <tr>
+                    <td colspan="2">{{fechasTotal.estacion}}</td>
+                </tr>
+                <tr *ngFor="let data of fechas;">
+                    <td>{{data.totalCantidad}}</td>
+                    <td>{{data.totalValor}}</td>
+                </tr>
+                <tr>
+                    <td>{{fechasTotal.totalCantidadF}}</td>
+                    <td>{{fechasTotal.totalValorF}}</td>
+                </tr>
+            </td>
+        </tbody>
+    </table>
+    <br>
+    <table>
+        <tbody>
+            <tr>
+                <td rowspan="2">Totales</td>
+                <td *ngFor="let totale of Totales;">{{totale.totalCantidad}}</td>
+            </tr>
+            <tr>
+                <td *ngFor="let totale of Totales;">{{totale.totalValor}}</td>
+            </tr>
+        </tbody>
+    </table>
+       
+  </div>
+  

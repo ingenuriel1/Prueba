@@ -1,0 +1,21 @@
+
+
+.submitBtn2 {
+  
+    background-color: #020233;
+    float: left;
+    border: 1px solid rgb(255, 255, 255);
+    align-content: center;
+    text-align: center;
+    margin-left: 10px;
+    border-radius: 20%;
+  }
+  p {
+    font-size: 0rem;
+    text-align: center;
+    margin-left: 10px;
+  }
+  
+  h6 { color: #FFFFFF; }
+  a { color: #FFFFFF; }
+  li { color: #FFFFFF; }

@@ -9,5 +9,6 @@
         public string? categoria { get; set; }
         public int cantidad { get; set; }
         public int valorTabulado { get; set; }
+        public DateTime fecha { get; set; }
     }
 }
