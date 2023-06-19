@@ -1,4 +1,4 @@
-CREATE TABLE recaudo (
+/*CREATE TABLE recaudo (
 Id INT PRIMARY KEY IDENTITY (1,1) NOT NULL,
 estacion VARCHAR(40) NOT NULL,
 sentido VARCHAR(40) NOT NULL,
@@ -250,5 +250,21 @@ INSERT INTO recaudo (estacion,sentido,hora,categoria,cantidad,valorTabulado,fech
 ('UNISABANA','BOG-CHI',20,'VII',1,49900,'01/10/2021'),
 ('UNISABANA','BOG-CHI',21,'VII',2,99800,'01/10/2021'),
 ('UNISABANA','BOG-CHI',23,'VII',1,49900,'01/10/2021'),
-('ANDES','BOG-CHI',17,'I',4300,39130000,'01/10/2021');
+('ANDES','BOG-CHI',17,'I',4300,39130000,'01/10/2021');*/
 select * from recaudo;
+
+select SUM(cantidad)as totalCantidad ,SUM(valorTabulado) as totalValor,fecha from recaudo 
+GROUP BY fecha ;
+
+select SUM(cantidad)as totalCantidad ,SUM(valorTabulado) as totalValor,fecha,estacion from recaudo 
+GROUP BY fecha,estacion ;
+
+select SUM(cantidad)as totalCantidad ,SUM(valorTabulado) as totalValor from recaudo ;
+
+
+CREATE PROCEDURE Totales 
+AS
+select SUM(cantidad)as totalCantidad ,SUM(valorTabulado) as totalValor from recaudo 
+GO;
+
+EXEC Totales; 

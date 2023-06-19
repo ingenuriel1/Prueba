@@ -24,14 +24,11 @@
                     <td>Total</td>
                 </tr>
             </td>
-            <td *ngFor="let fechasTotal of fechasTotales; index as i; first as isFirst">
+            <td *ngFor="let fechasTotal of estaciones; index as i; first as isFirst">
                 <tr>
                     <td colspan="2">{{fechasTotal.estacion}}</td>
                 </tr>
-                <tr *ngFor="let data of fechas;">
-                    <td>{{data.totalCantidad}}</td>
-                    <td>{{data.totalValor}}</td>
-                </tr>
+               
                 <tr>
                     <td>{{fechasTotal.totalCantidadF}}</td>
                     <td>{{fechasTotal.totalValorF}}</td>

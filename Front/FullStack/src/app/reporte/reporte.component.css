@@ -50,9 +50,10 @@
   table , td, th {
     border: 1px solid #595959;
     border-collapse: collapse;
+    margin: auto;
   }
   td, th {
-    height: 60px;
+    height: 25px;
   }
   th {
     background: #f0e6cc;
@@ -68,3 +69,4 @@
   html {
     scroll-behavior: smooth;
   }
+

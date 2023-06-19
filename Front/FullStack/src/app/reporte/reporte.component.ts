@@ -22,7 +22,10 @@ export class ReporteComponent implements OnInit {
   showFirstLastButtons = true;
   disabled = false;
   pageEvent: PageEvent | undefined;
-  fechas =
+  fechas:any| undefined;
+  estaciones:any| undefined;
+  Totales:any| undefined;
+  /*fechas =
     [
       { 'fecha': 'fecha1', 'totalCantidad': 'Total C a','totalValor': 'Total C a' },
       { 'fecha': 'fecha2', 'totalCantidad': 'Total C b','totalValor': 'Total C b' },
@@ -34,13 +37,10 @@ export class ReporteComponent implements OnInit {
       { 'estacion':'Estacion2','totalCantidadF': '000000', 'totalValorF': '111111'},
       { 'estacion':'Estacion3','totalCantidadF': '000000', 'totalValorF': '111111'},
     ]
-
     Totales =
     [
       {'totalCantidad':'456','totalValor':'888'},
-    ]
-
-
+    ]*/
 
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
   constructor(public reporteService: ReporteService) { }
@@ -49,6 +49,18 @@ export class ReporteComponent implements OnInit {
       this.dataSource = new MatTableDataSource<any>(data);
       this.dataSource.paginator = this.paginator;
       console.log(this.dataSource);
+    });
+    this.reporteService.getTotales().subscribe(data => {
+      this.Totales = data;
+      console.log(data);
+    });
+    this.reporteService.getFechas().subscribe(data => {
+      this.fechas = data;
+      console.log(data);
+    });
+    this.reporteService.getEstaciones().subscribe(data => {
+      this.estaciones = data;
+      console.log(data);
     });
   }
   filter(event: Event) {

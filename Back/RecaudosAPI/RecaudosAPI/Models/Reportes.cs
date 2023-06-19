@@ -1,8 +1,8 @@
 ﻿namespace RecaudosAPI.Models
 {
-    public class Recaudos
+    public class Reportes
     {
-        public int Id { get; set; } 
+        public int Id { get; set; }
         public string? estacion { get; set; }
         public string? sentido { get; set; }
         public int hora { get; set; }

@@ -16,4 +16,13 @@ export class ReporteService {
   getRecaudos(): Observable<any> {
     return this.http.get(this.urlApi+'/api/Recaudos');
   } 
+  getTotales(): Observable<any> {
+    return this.http.get(this.urlApi+'/api/Recaudos/GetTotales');
+  } 
+  getFechas(): Observable<any> {
+    return this.http.get(this.urlApi+'/api/Recaudos/Fechas');
+  } 
+  getEstaciones(): Observable<any> {
+    return this.http.get(this.urlApi+'/api/Recaudos/Estaciones');
+  } 
 }
