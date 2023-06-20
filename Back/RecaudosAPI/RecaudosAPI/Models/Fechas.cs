@@ -1,4 +1,6 @@
-﻿namespace RecaudosAPI.Models
+﻿using System.Security.Policy;
+
+namespace RecaudosAPI.Models
 {
     public class Fechas
     {
@@ -6,6 +8,7 @@
         public DateTime fecha { get; set; }
         public string? totalCantidad { get; set; }
         public string? totalValor { get; set; }
+        public string? estacion { get; set; }
 
     }
 }

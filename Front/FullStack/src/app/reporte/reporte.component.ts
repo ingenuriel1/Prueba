@@ -25,22 +25,7 @@ export class ReporteComponent implements OnInit {
   fechas:any| undefined;
   estaciones:any| undefined;
   Totales:any| undefined;
-  /*fechas =
-    [
-      { 'fecha': 'fecha1', 'totalCantidad': 'Total C a','totalValor': 'Total C a' },
-      { 'fecha': 'fecha2', 'totalCantidad': 'Total C b','totalValor': 'Total C b' },
-   
-    ]
-    fechasTotales =
-    [
-      { 'estacion':'Estacion1','totalCantidadF': '000000', 'totalValorF': '111111'},
-      { 'estacion':'Estacion2','totalCantidadF': '000000', 'totalValorF': '111111'},
-      { 'estacion':'Estacion3','totalCantidadF': '000000', 'totalValorF': '111111'},
-    ]
-    Totales =
-    [
-      {'totalCantidad':'456','totalValor':'888'},
-    ]*/
+  estacionDetalle:any| undefined;
 
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
   constructor(public reporteService: ReporteService) { }

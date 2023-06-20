@@ -28,10 +28,14 @@
                 <tr>
                     <td colspan="2">{{fechasTotal.estacion}}</td>
                 </tr>
-               
+                <tr *ngFor="let data of fechasTotal.estacionDetalle;">
+                    <td>{{data.cantidad}}</td>
+                    <td>{{data.valor}}</td>
+                </tr>
+                
                 <tr>
                     <td>{{fechasTotal.totalCantidadF}}</td>
-                    <td>{{fechasTotal.totalValorF}}</td>
+                    <td>${{fechasTotal.totalValorF}}</td>
                 </tr>
             </td>
         </tbody>
@@ -44,7 +48,7 @@
                 <td *ngFor="let totale of Totales;">{{totale.totalCantidad}}</td>
             </tr>
             <tr>
-                <td *ngFor="let totale of Totales;">{{totale.totalValor}}</td>
+                <td *ngFor="let totale of Totales;">${{totale.totalValor}}</td>
             </tr>
         </tbody>
     </table>

@@ -68,8 +68,8 @@ namespace RecaudosAPI.Controllers
             return listTotales;
         }
         [HttpGet]
-        [Route("Fechas")]
-        public async Task<ActionResult<IEnumerable<Fechas>>> Fechas()
+        [Route("GetFechas")]
+        public async Task<ActionResult<IEnumerable<Fechas>>> GetFechas()
         {
             if (_context.Recaudo == null)
             {
@@ -77,14 +77,13 @@ namespace RecaudosAPI.Controllers
             }
             var datos = await _context.Recaudo.ToListAsync();
             List<Fechas> ListFechas = new List<Fechas>();
-            Fechas fechas = new Fechas();
             try
             {
                 var result = (from item in datos
-                              group item by item.fecha into g
+                              group item by new { item.fecha } into g
                               select new Fechas()
                               {
-                                  fecha = g.Key,
+                                  fecha = g.Key.fecha,
                                   totalCantidad = g.Sum(x => x.cantidad).ToString(),
                                   totalValor = g.Sum(x => x.valorTabulado).ToString()
                               });
@@ -94,9 +93,10 @@ namespace RecaudosAPI.Controllers
                     ListFechas.Add(
                     new Fechas()
                     {
-                       fecha=item.fecha,
-                       totalCantidad=item.totalCantidad,
-                       totalValor=item.totalValor
+                        estacion = item.estacion,
+                        fecha = item.fecha,
+                        totalCantidad = item.totalCantidad,
+                        totalValor = item.totalValor
                     }
                         );
 
@@ -109,9 +109,10 @@ namespace RecaudosAPI.Controllers
             }
             return ListFechas;
         }
+
         [HttpGet]
-        [Route("Estaciones")]
-        public async Task<ActionResult<IEnumerable<Estaciones>>> Estaciones()
+        [Route("GetEstaciones")]
+        public async Task<ActionResult<IEnumerable<Estaciones>>> GetEstaciones()
         {
             if (_context.Recaudo == null)
             {
@@ -121,29 +122,84 @@ namespace RecaudosAPI.Controllers
             List<Estaciones> ListEstaciones = new List<Estaciones>();
             try
             {
-
-                var result = (from item in datos
-                              group item by item.estacion into g
-                              select new Estaciones()
+                var estaciones = (from item in datos
+                                  group item by new { item.estacion } into g
+                                  select new Estaciones()
+                                  {
+                                      estacion = g.Key.estacion,
+                                      totalCantidadF = g.Sum(x => x.cantidad),
+                                      totalValorF = g.Sum(x => x.valorTabulado)
+                                  });
+                var estacione2 = (from item in datos
+                                  group item by new { item.estacion, item.fecha } into g
+                                  select new Estaciones()
+                                  {
+                                      estacion = g.Key.estacion,
+                                      fecha = g.Key.fecha,
+                                      totalCantidadF = g.Sum(x => x.cantidad),
+                                      totalValorF = g.Sum(x => x.valorTabulado)
+                                  });
+                var fechas = (from item in datos
+                              group item by new { item.fecha } into g
+                              select new Fechas()
                               {
-                                  estacion = g.Key,
-                                  fechas=new DateTime(),
-                                  totalCantidadF = g.Sum(x => x.cantidad),
-                                  totalValorF = g.Sum(x => x.valorTabulado)
+                                  fecha = g.Key.fecha,
+                                  totalCantidad = g.Sum(x => x.cantidad).ToString(),
+                                  totalValor = g.Sum(x => x.valorTabulado).ToString()
                               });
 
-                foreach (var item in result)
+                foreach (var item in estaciones)
                 {
+                    List<EstacionDetalle> ListEstacionDetalle = new List<EstacionDetalle>();
+
+                    foreach (var fecha in fechas)
+                    {
+                        int aplica = 0;
+                        int cantidad = 0;
+                        int valor = 0;
+                        foreach (var detalle in estacione2)
+                        {
+                            if (item.estacion == detalle.estacion)
+                            {
+                                if (fecha.fecha == detalle.fecha)
+                                {
+                                    aplica = 1;
+                                    cantidad = detalle.totalCantidadF;
+                                    valor = detalle.totalValorF;
+                                }
+                            }
+                        }
+                        if (aplica == 1)
+                        {
+                            ListEstacionDetalle.Add(
+                                                    new EstacionDetalle()
+                                                    {
+                                                        cantidad = cantidad.ToString(),
+                                                        valor = '$' + valor.ToString()
+                                                    });
+}
+                        else
+                        {
+                            ListEstacionDetalle.Add(
+                                                 new EstacionDetalle()
+                                                 {
+                                                     cantidad = "",
+                                                     valor = ""
+                                                 });
+                        }
+
+                    }
 
                     ListEstaciones.Add(
-                    new Estaciones()
-                    {
-                        estacion = item.estacion,
-                        totalCantidadF = item.totalCantidadF,
-                        totalValorF = item.totalValorF,
-                        fechas = item.fechas
-                    }
-                        );
+                     new Estaciones()
+                     {
+                         estacion = item.estacion,
+                         totalCantidadF = item.totalCantidadF,
+                         totalValorF = item.totalValorF,
+                         estacionDetalle =ListEstacionDetalle
+                     }
+                         );
+
 
                 }
             }

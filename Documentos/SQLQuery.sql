@@ -16,6 +16,10 @@ clave VARCHAR(40) NOT NULL,
 INSERT INTO usaurios (login,clave) VALUES 
 ('carlos','1234');
 INSERT INTO recaudo (estacion,sentido,hora,categoria,cantidad,valorTabulado,fecha) VALUES 
+('FUSCA','BOG-CHI',7,'V',1,35000,'01/08/2021'),
+('FUSCA','BOG-CHI',7,'V',1,35000,'01/09/2021'),
+('UNISABANA','BOG-CHI',0,'I',377,3376100,'01/08/2021'),
+('UNISABANA','BOG-CHI',0,'I',377,3376100,'01/09/2021'),
 ('ANDES','BOG-CHI',0,'I',377,3376100,'01/08/2021'),
 ('ANDES','BOG-CHI',1,'I',244,2202200,'01/08/2021'),
 ('ANDES','BOG-CHI',2,'I',172,1556100,'01/08/2021'),
@@ -250,14 +254,18 @@ INSERT INTO recaudo (estacion,sentido,hora,categoria,cantidad,valorTabulado,fech
 ('UNISABANA','BOG-CHI',20,'VII',1,49900,'01/10/2021'),
 ('UNISABANA','BOG-CHI',21,'VII',2,99800,'01/10/2021'),
 ('UNISABANA','BOG-CHI',23,'VII',1,49900,'01/10/2021'),
-('ANDES','BOG-CHI',17,'I',4300,39130000,'01/10/2021');*/
+('ANDES','BOG-CHI',17,'I',4300,39130000,'01/10/2021'),
+
+
+
+*/
 select * from recaudo;
 
 select SUM(cantidad)as totalCantidad ,SUM(valorTabulado) as totalValor,fecha from recaudo 
 GROUP BY fecha ;
 
 select SUM(cantidad)as totalCantidad ,SUM(valorTabulado) as totalValor,fecha,estacion from recaudo 
-GROUP BY fecha,estacion ;
+GROUP BY estacion,fecha ;
 
 select SUM(cantidad)as totalCantidad ,SUM(valorTabulado) as totalValor from recaudo ;
 

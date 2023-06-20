@@ -18,11 +18,12 @@ export class ReporteService {
   } 
   getTotales(): Observable<any> {
     return this.http.get(this.urlApi+'/api/Recaudos/GetTotales');
-  } 
+  }  
   getFechas(): Observable<any> {
-    return this.http.get(this.urlApi+'/api/Recaudos/Fechas');
+    return this.http.get(this.urlApi+'/api/Recaudos/GetFechas');
   } 
   getEstaciones(): Observable<any> {
-    return this.http.get(this.urlApi+'/api/Recaudos/Estaciones');
+    return this.http.get(this.urlApi+'/api/Recaudos/GetEstaciones');
   } 
+
 }
