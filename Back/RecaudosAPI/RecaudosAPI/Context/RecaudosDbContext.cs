@@ -10,6 +10,7 @@ namespace RecaudosAPI.Context
         public DbSet<Totales> Total { get; set; }
         public DbSet<Estaciones> Estacione { get; set; }
         public DbSet<Fechas> Fecha { get; set; }
+        public DbSet<Usuarios> Usuario { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
       : base(options)
         {

@@ -273,7 +273,27 @@ namespace RecaudosAPI.Controllers
 
             return CreatedAtAction("GetRecaudos", new { id = recaudos.Id }, recaudos);
         }
+        [HttpPost]
+        [Route("PostRecaudoSeguridad")]
+        public async Task<ActionResult<IEnumerable<Recaudos>>> PostRecaudoSeguridad(Usuarios usuario)
+        {
+            if (_context.Recaudo == null)
+            {
+                return NotFound();
+            }
+            var usuarioRegistrado = _context.Usuario.Where(c => c.login == usuario.login)
+                 .Where(c => c.clave == usuario.clave)
+                 .Select(c => c.Id).Count();
+            if (usuarioRegistrado > 0)
+            {
+                return await _context.Recaudo.ToListAsync();
+            }
+            else
+            {
+                return null;
+            }
 
+        }
         // DELETE: api/Recaudos/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRecaudos(int id)

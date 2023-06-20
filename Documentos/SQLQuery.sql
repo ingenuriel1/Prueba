@@ -8,12 +8,12 @@ cantidad INT,
 valorTabulado INT,
 fecha datetime
 );
-CREATE TABLE usaurios (
+CREATE TABLE usuario (
 Id INT PRIMARY KEY IDENTITY (1,1) NOT NULL,
 login VARCHAR(40) NOT NULL,
 clave VARCHAR(40) NOT NULL,
 );
-INSERT INTO usaurios (login,clave) VALUES 
+INSERT INTO usuario (login,clave) VALUES 
 ('carlos','1234');
 INSERT INTO recaudo (estacion,sentido,hora,categoria,cantidad,valorTabulado,fecha) VALUES 
 ('FUSCA','BOG-CHI',7,'V',1,35000,'01/08/2021'),
@@ -260,6 +260,7 @@ INSERT INTO recaudo (estacion,sentido,hora,categoria,cantidad,valorTabulado,fech
 
 */
 select * from recaudo;
+select * from usuario;
 
 select SUM(cantidad)as totalCantidad ,SUM(valorTabulado) as totalValor,fecha from recaudo 
 GROUP BY fecha ;
